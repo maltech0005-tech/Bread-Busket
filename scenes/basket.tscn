@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://drk5hxkm1vgwx"]
+
+[ext_resource type="Script" uid="uid://dqct4inkqemm7" path="res://script/basket.gd" id="1_idgsc"]
+[ext_resource type="Texture2D" uid="uid://r32w51saa6nw" path="res://assets/basket.png" id="2_o74ig"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3myrj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyt6o"]
+atlas = ExtResource("2_o74ig")
+region = Rect2(0, 0, 64, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xn4va"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tyt6o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="basket" type="CharacterBody2D"]
+script = ExtResource("1_idgsc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3myrj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xn4va")

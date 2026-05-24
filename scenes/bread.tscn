@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bajosakgpd441"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nckey"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lj8jo"]
+
+[node name="bread" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nckey")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lj8jo")

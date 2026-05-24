@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://dagl2jsi6iqyj"]
+
+[ext_resource type="Texture2D" uid="uid://c7ah4k5x5k3sn" path="res://assets/bg1.jpg" id="1_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://drk5hxkm1vgwx" path="res://scenes/basket.tscn" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://brk5ornw4rseq" path="res://scenes/cloud.tscn" id="3_sugp2"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jyhfs"]
+
+[node name="main" type="Node2D"]
+
+[node name="bg" type="Sprite2D" parent="."]
+position = Vector2(369, 208)
+texture = ExtResource("1_0wfyh")
+
+[node name="basket" parent="." instance=ExtResource("2_sugp2")]
+position = Vector2(356, 360)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(369, 208)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(3, 177)
+shape = SubResource("WorldBoundaryShape2D_jyhfs")
+disabled = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(356, 360)
+zoom = Vector2(1.56, 1.56)
+limit_left = 0
+limit_top = 0
+limit_right = 737
+limit_bottom = 414
+limit_smoothed = true
+
+[node name="cloud" parent="." instance=ExtResource("3_sugp2")]
+position = Vector2(349, 55)
