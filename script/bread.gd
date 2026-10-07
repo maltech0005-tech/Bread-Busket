@@ -1,7 +1,6 @@
 extends Node2D
-@onready var animated_sprite_2d: Sprite2D = $Sprite2D
 
-var Speed = 100
+var Speed = 200
 
 func _ready() -> void:
 	add_to_group("bread")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dagl2jsi6iqyj"]
+[gd_scene load_steps=30 format=3 uid="uid://dagl2jsi6iqyj"]
 
 [ext_resource type="Texture2D" uid="uid://c7ah4k5x5k3sn" path="res://assets/bg1.jpg" id="1_iywne"]
 [ext_resource type="Script" uid="uid://cy0riad6dssft" path="res://scenes/game.gd" id="1_p57ef"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://padcejxo8i70" path="res://assets/left_button.png" id="4_gee14"]
 [ext_resource type="Texture2D" uid="uid://dttb1btw7l5qc" path="res://assets/playbutton.png" id="5_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://cleun01lmmbk4" path="res://scenes/bread.tscn" id="7_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://cr6kig2f1uuna" path="res://assets/Bread_meter.png" id="8_0tnpc"]
+[ext_resource type="Texture2D" uid="uid://f4cy2l1abf1x" path="res://assets/bread.png" id="9_vtaks"]
+[ext_resource type="Texture2D" uid="uid://c7816hp1smcp1" path="res://assets/stats_board.png" id="10_vtaks"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jyhfs"]
 
@@ -48,17 +51,152 @@ corner_radius_bottom_left = 6
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_choun"]
 bg_color = Color(0.05490196, 0.29803923, 0.54509807, 1)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvpfn"]
+atlas = ExtResource("8_0tnpc")
+region = Rect2(0, 160, 160, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dinhu"]
+atlas = ExtResource("8_0tnpc")
+region = Rect2(0, 144, 160, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvuet"]
+atlas = ExtResource("8_0tnpc")
+region = Rect2(0, 0, 160, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trtic"]
+atlas = ExtResource("8_0tnpc")
+region = Rect2(0, 128, 160, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ir15t"]
+atlas = ExtResource("8_0tnpc")
+region = Rect2(0, 112, 160, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ca42v"]
+atlas = ExtResource("8_0tnpc")
+region = Rect2(0, 96, 160, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rysoc"]
+atlas = ExtResource("8_0tnpc")
+region = Rect2(0, 80, 160, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssvqc"]
+atlas = ExtResource("8_0tnpc")
+region = Rect2(0, 64, 160, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_264po"]
+atlas = ExtResource("8_0tnpc")
+region = Rect2(0, 48, 160, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kice"]
+atlas = ExtResource("8_0tnpc")
+region = Rect2(0, 32, 160, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5newe"]
+atlas = ExtResource("8_0tnpc")
+region = Rect2(0, 16, 160, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_37s47"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvpfn")
+}],
+"loop": true,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dinhu")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvuet")
+}],
+"loop": true,
+"name": &"10",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trtic")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ir15t")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ca42v")
+}],
+"loop": true,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rysoc")
+}],
+"loop": true,
+"name": &"5",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssvqc")
+}],
+"loop": true,
+"name": &"6",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_264po")
+}],
+"loop": true,
+"name": &"7",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kice")
+}],
+"loop": true,
+"name": &"8",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5newe")
+}],
+"loop": true,
+"name": &"9",
+"speed": 5.0
+}]
+
 [node name="game" type="Node2D"]
 script = ExtResource("1_p57ef")
 bread = ExtResource("7_u5sy4")
 
 [node name="bg" type="Sprite2D" parent="."]
-position = Vector2(369.5, 208)
-scale = Vector2(1.0013587, 1)
+position = Vector2(418, 232.00002)
+scale = Vector2(1.1440216, 1.1352657)
 texture = ExtResource("1_iywne")
 
 [node name="basket" parent="." instance=ExtResource("2_p57ef")]
-position = Vector2(356, 360)
+position = Vector2(396, 415)
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(369, 208)
@@ -69,16 +207,18 @@ shape = SubResource("WorldBoundaryShape2D_jyhfs")
 disabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(356, 360)
-zoom = Vector2(1.56, 1.56)
-limit_left = 0
+position = Vector2(361, 235)
+zoom = Vector2(1.37, 1.37)
+limit_left = -2
 limit_top = 0
-limit_right = 737
-limit_bottom = 414
+limit_right = 839
+limit_bottom = 466
 limit_smoothed = true
 
 [node name="cloud" parent="." instance=ExtResource("3_u5sy4")]
-position = Vector2(349, 55)
+position = Vector2(402, 110)
+
+[node name="spawn_timer" type="Timer" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -107,11 +247,43 @@ text = "RIGHT"
 icon = ExtResource("5_0tnpc")
 icon_alignment = 2
 
-[node name="Bread" parent="." instance=ExtResource("7_u5sy4")]
-position = Vector2(338.30444, 55.761345)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(107.700745, 23.941353)
+sprite_frames = SubResource("SpriteFrames_37s47")
+animation = &"0"
 
-[node name="spawn_timer" type="Timer" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(15.000003, 16.5)
+scale = Vector2(1.625, 1.6875)
+texture = ExtResource("9_vtaks")
 
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 80.0
+offset_top = -3.0
+offset_right = 109.0
+offset_bottom = 20.0
+text = "Life"
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(1083, 32.2171)
+scale = Vector2(1, 0.58785623)
+texture = ExtResource("10_vtaks")
+
+[node name="stats_label" type="Label" parent="CanvasLayer"]
+offset_left = 1022.58575
+offset_top = 5.4341965
+offset_right = 1138.5857
+offset_bottom = 54.434196
+text = "High Score: 0
+Score: 0"
+
+[node name="Pause" type="Button" parent="CanvasLayer"]
+offset_left = 388.16382
+offset_top = 3.1293945
+offset_right = 414.16382
+offset_bottom = 34.129395
+text = "||"
+
+[connection signal="timeout" from="spawn_timer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/left" to="." method="_on_left_pressed"]
 [connection signal="pressed" from="CanvasLayer/right" to="." method="_on_right_pressed"]
-[connection signal="timeout" from="spawn_timer" to="." method="_on_spawn_timer_timeout"]

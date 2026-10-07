@@ -20,14 +20,14 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if position.x<70:
 		direction=1
-	if position.x>638:
+	if position.x>708:
 		direction=-1
 	velocity.x=direction*speed
 	move_and_slide()
 	
 func rand_move():
 	direction=[-1, 1].pick_random()
-	speed = randf_range(100, 150)
+	speed = randf_range(150, 300)
 	random_timer.start(randf_range(2.0,4.0))
 
 func _on_random_timer_timeout() -> void:
