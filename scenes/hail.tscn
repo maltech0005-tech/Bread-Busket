@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://chugoet7aphwn"]
+
+[ext_resource type="Texture2D" uid="uid://bpk3eyt32x8gl" path="res://assets/hail.png" id="1_i17hj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i17hj"]
+radius = 11.0
+
+[node name="Hail" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+texture = ExtResource("1_i17hj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_i17hj")

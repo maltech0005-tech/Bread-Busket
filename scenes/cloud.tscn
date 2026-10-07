@@ -1,36 +1,58 @@
-[gd_scene load_steps=4 format=3 uid="uid://brk5ornw4rseq"]
+[gd_scene load_steps=9 format=3 uid="uid://brk5ornw4rseq"]
 
-[ext_resource type="Texture2D" uid="uid://bwkrkcye6pod1" path="res://assets/cloud.png" id="1_vlwrh"]
-
-[sub_resource type="GDScript" id="GDScript_vlwrh"]
-script/source = "extends CharacterBody2D
-
-
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-
-
-func _physics_process(delta: float) -> void:
-	
-	var direction := Input.get_axis(\"ui_left\", \"ui_right\")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
-	move_and_slide()
-"
+[ext_resource type="Texture2D" uid="uid://nqxp4my6vnoj" path="res://assets/cloud_happy.png" id="1_2kyfr"]
+[ext_resource type="Script" uid="uid://b513lnbnri2n5" path="res://script/cloud.gd" id="1_n1qj5"]
+[ext_resource type="PackedScene" uid="uid://cleun01lmmbk4" path="res://scenes/bread.tscn" id="2_fubt3"]
+[ext_resource type="Texture2D" uid="uid://cr1a50yywhvlx" path="res://assets/cloud_sad.png" id="2_n1qj5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2kyfr"]
 radius = 51.009804
 
-[node name="cloud" type="CharacterBody2D"]
-script = SubResource("GDScript_vlwrh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_fubt3"]
+atlas = ExtResource("1_2kyfr")
+region = Rect2(0, 0, 64, 64)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-0.21774295, 0.25268555)
-scale = Vector2(0.015552698, 0.013592415)
-texture = ExtResource("1_vlwrh")
+[sub_resource type="AtlasTexture" id="AtlasTexture_sk0fm"]
+atlas = ExtResource("2_n1qj5")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6omnh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fubt3")
+}],
+"loop": true,
+"name": &"happy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sk0fm")
+}],
+"loop": true,
+"name": &"sad",
+"speed": 5.0
+}]
+
+[node name="cloud" type="CharacterBody2D"]
+script = ExtResource("1_n1qj5")
+bread = ExtResource("2_fubt3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_2kyfr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 0)
+scale = Vector2(2, 1.9375)
+sprite_frames = SubResource("SpriteFrames_6omnh")
+animation = &"happy"
+autoplay = "happy"
+
+[node name="random_timer" type="Timer" parent="."]
+
+[node name="spawn_timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="random_timer" to="." method="_on_random_timer_timeout"]
+[connection signal="timeout" from="spawn_timer" to="." method="_on_spawn_timer_timeout"]

@@ -1,13 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://bajosakgpd441"]
+[gd_scene load_steps=4 format=3 uid="uid://cleun01lmmbk4"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_nckey"]
+[ext_resource type="Script" uid="uid://dro5onhqalb0x" path="res://script/bread.gd" id="1_16yqp"]
+[ext_resource type="Texture2D" uid="uid://f4cy2l1abf1x" path="res://assets/bread.png" id="1_svkq2"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_lj8jo"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_16yqp"]
 
-[node name="bread" type="CharacterBody2D"]
+[node name="Bread" type="Area2D"]
+script = ExtResource("1_16yqp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_svkq2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_nckey")
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_16yqp")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_lj8jo")
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
