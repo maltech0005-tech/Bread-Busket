@@ -40,10 +40,9 @@ script = ExtResource("1_n1qj5")
 bread = ExtResource("2_fubt3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_2kyfr")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, 0)
 scale = Vector2(2, 1.9375)
 sprite_frames = SubResource("SpriteFrames_6omnh")
@@ -54,5 +53,8 @@ autoplay = "happy"
 
 [node name="spawn_timer" type="Timer" parent="."]
 
+[node name="hail_face_timer" type="Timer" parent="."]
+
 [connection signal="timeout" from="random_timer" to="." method="_on_random_timer_timeout"]
 [connection signal="timeout" from="spawn_timer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="hail_face_timer" to="." method="_on_hail_face_timer_timeout"]

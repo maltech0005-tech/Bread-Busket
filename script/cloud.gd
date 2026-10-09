@@ -3,6 +3,8 @@ extends CharacterBody2D
 @onready var random_timer: Timer = $random_timer
 @onready var spawn_timer: Timer = $spawn_timer
 @export var bread: PackedScene
+@onready var sprite: AnimatedSprite2D = $sprite
+@onready var hail_face_timer: Timer = $hail_face_timer
 
 const JUMP_VELOCITY = -400.0
 var init_pos: Vector2
@@ -38,3 +40,9 @@ func _on_random_timer_timeout() -> void:
 	#bread_spawn.global_position=Vector2.ZERO
 	#add_child(bread_spawn)
 	
+func hail_face():
+	sprite.play("sad")
+	hail_face_timer.start(0.4)
+
+func _on_hail_face_timer_timeout() -> void:
+	sprite.play("happy")

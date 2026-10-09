@@ -1,0 +1,132 @@
+[gd_scene load_steps=12 format=3 uid="uid://bsuluvy5adh8"]
+
+[ext_resource type="Script" uid="uid://ep24qojgd12r" path="res://script/menu.gd" id="1_11y2r"]
+[ext_resource type="Texture2D" uid="uid://c7ah4k5x5k3sn" path="res://assets/bg1.jpg" id="1_xdvgc"]
+[ext_resource type="PackedScene" uid="uid://cleun01lmmbk4" path="res://scenes/bread.tscn" id="2_jmdev"]
+[ext_resource type="PackedScene" uid="uid://chugoet7aphwn" path="res://scenes/hail.tscn" id="3_b6cxs"]
+[ext_resource type="PackedScene" uid="uid://b8oco0itoq06a" path="res://scenes/Menu_cloud.tscn" id="5_jmdev"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jmdev"]
+bg_color = Color(0.18431373, 0.18431373, 0.18431373, 0.827451)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b6cxs"]
+bg_color = Color(0.018020056, 0.26180276, 0.32753283, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1abgu"]
+bg_color = Color(0.019607844, 0.2627451, 0.3529412, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yt8fu"]
+bg_color = Color(0.054740593, 0.44578665, 0.5509865, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="Gradient" id="Gradient_4umqm"]
+offsets = PackedFloat32Array(0.009009009, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pp5m5"]
+gradient = SubResource("Gradient_4umqm")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_11y2r")
+bread = ExtResource("2_jmdev")
+hail = ExtResource("3_b6cxs")
+
+[node name="bg" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(573.00006, 326)
+scale = Vector2(1.5652175, 1.5893719)
+texture = ExtResource("1_xdvgc")
+
+[node name="MenuCloud" parent="." instance=ExtResource("5_jmdev")]
+position = Vector2(550, 77)
+
+[node name="spawn_timer" type="Timer" parent="."]
+
+[node name="hail_timer" type="Timer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 1
+offset_left = -3.0
+offset_top = -4.0
+offset_right = 1159.0
+offset_bottom = 654.0
+color = Color(0.18431373, 0.18431373, 0.18431373, 0.827451)
+
+[node name="GameLabel" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.201
+anchor_bottom = 0.061000004
+offset_left = 423.0
+offset_top = 112.0
+offset_right = 517.438
+offset_bottom = 198.862
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+theme_override_font_sizes/mono_font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_jmdev")
+text = "
+  BREAD BASKET
+"
+
+[node name="Menu_Container" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 0
+offset_left = 496.17352
+offset_top = 252.04877
+offset_right = 686.0
+offset_bottom = 452.04877
+
+[node name="Play" type="Button" parent="ColorRect/Menu_Container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_b6cxs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1abgu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yt8fu")
+text = "PLAY"
+
+[node name="PointLight2D" type="PointLight2D" parent="ColorRect/Menu_Container/Play"]
+position = Vector2(-184.51729, 23.451244)
+scale = Vector2(3.109375, 1.1406254)
+texture = SubResource("GradientTexture2D_pp5m5")
+offset = Vector2(90, 0)
+
+[node name="Help" type="Button" parent="ColorRect/Menu_Container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "HELP"
+
+[node name="Settings" type="Button" parent="ColorRect/Menu_Container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "SETTINGS"
+
+[node name="Quit" type="Button" parent="ColorRect/Menu_Container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "QUIT"
+
+[connection signal="timeout" from="spawn_timer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="pressed" from="ColorRect/Menu_Container/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="ColorRect/Menu_Container/Help" to="." method="_on_help_pressed"]
+[connection signal="pressed" from="ColorRect/Menu_Container/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="ColorRect/Menu_Container/Quit" to="." method="_on_quit_pressed"]

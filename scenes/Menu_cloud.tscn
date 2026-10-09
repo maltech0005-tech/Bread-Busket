@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://b8oco0itoq06a"]
+
+[ext_resource type="Script" uid="uid://dltenwcmlma0r" path="res://script/menu_cloud.gd" id="1_08ewj"]
+[ext_resource type="Texture2D" uid="uid://nqxp4my6vnoj" path="res://assets/cloud_happy.png" id="2_27cwu"]
+[ext_resource type="Texture2D" uid="uid://cr1a50yywhvlx" path="res://assets/cloud_sad.png" id="3_2g14j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nylke"]
+radius = 51.009804
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fubt3"]
+atlas = ExtResource("2_27cwu")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sk0fm"]
+atlas = ExtResource("3_2g14j")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f54ej"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fubt3")
+}],
+"loop": true,
+"name": &"happy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sk0fm")
+}],
+"loop": true,
+"name": &"sad",
+"speed": 5.0
+}]
+
+[node name="MenuCloud" type="CharacterBody2D"]
+script = ExtResource("1_08ewj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nylke")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 0)
+scale = Vector2(2, 1.9375)
+sprite_frames = SubResource("SpriteFrames_f54ej")
+animation = &"happy"
+autoplay = "happy"
+
+[node name="random_timer" type="Timer" parent="."]
+
+[node name="spawn_timer" type="Timer" parent="."]
+
+[node name="hail_face_timer" type="Timer" parent="."]
