@@ -1,0 +1,148 @@
+[gd_scene load_steps=15 format=3 uid="uid://lvp02v8i8sb1"]
+
+[ext_resource type="Script" uid="uid://bywb2tuc7hxhh" path="res://script/help.gd" id="1_acoij"]
+[ext_resource type="Texture2D" uid="uid://c7ah4k5x5k3sn" path="res://assets/bg1.jpg" id="2_1egw1"]
+[ext_resource type="PackedScene" uid="uid://cleun01lmmbk4" path="res://scenes/bread.tscn" id="2_j1qxv"]
+[ext_resource type="PackedScene" uid="uid://b8oco0itoq06a" path="res://scenes/Menu_cloud.tscn" id="3_j1qxv"]
+[ext_resource type="PackedScene" uid="uid://chugoet7aphwn" path="res://scenes/hail.tscn" id="3_mqstw"]
+[ext_resource type="AudioStream" uid="uid://c5rsu844x3xaa" path="res://assets/background.mp3" id="4_mqstw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7bmx"]
+bg_color = Color(0.05490196, 0.4862745, 0.654902, 0.5019608)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7tm1"]
+bg_color = Color(0.13333334, 0.13333334, 0.13333334, 0.79607844)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.03137255, 0.46666667, 0.67058825, 0.827451)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhlfi"]
+bg_color = Color(0.13333334, 0.13333334, 0.13333334, 0.79607844)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j1qxv"]
+bg_color = Color(0.018020056, 0.26180276, 0.32753283, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqstw"]
+bg_color = Color(0.019607844, 0.2627451, 0.3529412, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r0ohh"]
+bg_color = Color(0.054740593, 0.44578665, 0.5509865, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="Gradient" id="Gradient_fd4am"]
+offsets = PackedFloat32Array(0.009009009, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_57ux3"]
+gradient = SubResource("Gradient_fd4am")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="Help" type="Node2D"]
+script = ExtResource("1_acoij")
+bread = ExtResource("2_j1qxv")
+hail = ExtResource("3_mqstw")
+
+[node name="bg" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(573.00006, 326)
+scale = Vector2(1.5652175, 1.5893719)
+texture = ExtResource("2_1egw1")
+
+[node name="MenuCloud" parent="." instance=ExtResource("3_j1qxv")]
+position = Vector2(550, 77)
+
+[node name="spawn_timer" type="Timer" parent="."]
+
+[node name="hail_timer" type="Timer" parent="."]
+
+[node name="background" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_mqstw")
+autoplay = true
+parameters/looping = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 1
+offset_left = -3.0
+offset_top = -4.0
+offset_right = 1159.0
+offset_bottom = 654.0
+color = Color(0.47058824, 0.47058824, 0.47058824, 0.45882353)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_left = 277.0
+offset_top = 102.0
+offset_right = 863.0
+offset_bottom = 525.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_n7bmx")
+
+[node name="Larger_border" type="RichTextLabel" parent="."]
+offset_left = 290.0
+offset_top = 112.0
+offset_right = 848.0
+offset_bottom = 513.0
+theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/bold_font_size = 40
+theme_override_font_sizes/bold_italics_font_size = 40
+theme_override_font_sizes/italics_font_size = 40
+theme_override_font_sizes/mono_font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_u7tm1")
+theme_override_styles/focus = SubResource("StyleBoxFlat_vhlfi")
+bbcode_enabled = true
+text = "[center][b][i]Help[/i][/b][/center]
+[u][b]How to play[/b][/u]
+[ul]To move[/ul]
+      -use the AD in WASD / Arrow Keys(Left and Right) 
+
+[ul]To pause[/ul]
+	  -click the spacebar
+	  -or use the pause button on screen
+
+[ul]To restart[/ul]
+	  -click the \"R\" key
+	  -or use the pause menu
+
+[u][b]Power Ups[/b][/u]
+[ul]Coming Soon[ul]"
+
+[node name="Back" type="Button" parent="."]
+offset_left = 529.1362
+offset_top = 542.67236
+offset_right = 589.1362
+offset_bottom = 578.67236
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_j1qxv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mqstw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_r0ohh")
+text = "Back"
+
+[node name="PointLight2D" type="PointLight2D" parent="Back"]
+position = Vector2(-105.70481, 23.451237)
+scale = Vector2(1.578125, 0.921875)
+texture = SubResource("GradientTexture2D_57ux3")
+offset = Vector2(90, 0)
+
+[connection signal="timeout" from="spawn_timer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

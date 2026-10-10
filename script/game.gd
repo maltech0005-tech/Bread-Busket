@@ -5,6 +5,9 @@ extends Node2D
 @onready var hail_timer: Timer = $hail_timer
 @onready var game_over: Node2D = $CanvasLayer/GameOver
 @onready var life_value: AnimatedSprite2D = $CanvasLayer/life_value
+@onready var stats_label: Label = $CanvasLayer/stats_label
+@onready var bread_collected: AudioStreamPlayer2D = $bread_collected
+@onready var hail_crash: AudioStreamPlayer2D = $hail_crash
 
 var cloud = null
 var basket = null
@@ -60,6 +63,9 @@ func _on_quit_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/Menu.tscn")
 
 func _on_restart_pressed() -> void:
+	basket=get_tree().get_first_node_in_group("basket")
+	basket.life=10
+	get_tree().paused=false
 	get_tree().reload_current_scene()
 
 func check_life():
@@ -87,3 +93,15 @@ func check_life():
 		life_value.play("1")
 	elif life == 0:
 		life_value.play("0")
+
+func _on_pause_pressed() -> void:
+	get_tree().paused=true
+	
+func update_stats():
+	stats_label.text = "High Score: "+str(GameManager.HighScore)+"\nScore: "+str(GameManager.score)
+	
+func playbread():
+	bread_collected.play()
+	
+func playhail():
+	hail_crash.play()

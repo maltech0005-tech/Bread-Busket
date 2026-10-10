@@ -1,7 +1,7 @@
-[gd_scene load_steps=30 format=3 uid="uid://dagl2jsi6iqyj"]
+[gd_scene load_steps=34 format=3 uid="uid://dagl2jsi6iqyj"]
 
 [ext_resource type="Texture2D" uid="uid://c7ah4k5x5k3sn" path="res://assets/bg1.jpg" id="1_iywne"]
-[ext_resource type="Script" uid="uid://cy0riad6dssft" path="res://scenes/game.gd" id="1_p57ef"]
+[ext_resource type="Script" uid="uid://cy0riad6dssft" path="res://script/game.gd" id="1_p57ef"]
 [ext_resource type="PackedScene" uid="uid://drk5hxkm1vgwx" path="res://scenes/basket.tscn" id="2_p57ef"]
 [ext_resource type="PackedScene" uid="uid://chugoet7aphwn" path="res://scenes/hail.tscn" id="3_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://brk5ornw4rseq" path="res://scenes/cloud.tscn" id="3_u5sy4"]
@@ -9,7 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://dttb1btw7l5qc" path="res://assets/playbutton.png" id="5_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://cleun01lmmbk4" path="res://scenes/bread.tscn" id="7_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://cr6kig2f1uuna" path="res://assets/Bread_meter.png" id="8_0tnpc"]
+[ext_resource type="Texture2D" uid="uid://bt8yel13cfxcf" path="res://assets/Revival.png" id="10_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://c7816hp1smcp1" path="res://assets/stats_board.png" id="10_vtaks"]
+[ext_resource type="AudioStream" uid="uid://c5rsu844x3xaa" path="res://assets/background.mp3" id="12_dinhu"]
+[ext_resource type="AudioStream" uid="uid://dvaf0gthpokxo" path="res://assets/bread_collected.mp3" id="12_trtic"]
+[ext_resource type="AudioStream" uid="uid://cf58okdro8us8" path="res://assets/hail_stone.mp3" id="13_ir15t"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jyhfs"]
 
@@ -258,6 +262,7 @@ animation = &"10"
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(15.000003, 16.5)
 scale = Vector2(1.625, 1.6875)
+texture = ExtResource("10_kvpfn")
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 offset_left = 80.0
@@ -280,9 +285,9 @@ text = "High Score: 0
 Score: 0"
 
 [node name="Pause" type="Button" parent="CanvasLayer"]
-offset_left = 388.16382
+offset_left = 577.1638
 offset_top = 3.1293945
-offset_right = 414.16382
+offset_right = 603.1638
 offset_bottom = 34.129395
 text = "||"
 
@@ -324,10 +329,22 @@ text = "HELP"
 layout_mode = 2
 text = "QUIT"
 
+[node name="bread_collected" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_trtic")
+
+[node name="hail_crash" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_ir15t")
+
+[node name="background" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_dinhu")
+autoplay = true
+parameters/looping = false
+
 [connection signal="timeout" from="spawn_timer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="hail_timer" to="." method="_on_hail_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/left" to="." method="_on_left_pressed"]
 [connection signal="pressed" from="CanvasLayer/right" to="." method="_on_right_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause" to="." method="_on_pause_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameOver/gameoverContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameOver/gameoverContainer/Help" to="." method="_on_help_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameOver/gameoverContainer/Quit" to="." method="_on_quit_pressed"]

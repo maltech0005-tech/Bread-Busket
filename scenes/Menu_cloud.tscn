@@ -52,3 +52,6 @@ autoplay = "happy"
 [node name="spawn_timer" type="Timer" parent="."]
 
 [node name="hail_face_timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="random_timer" to="." method="_on_random_timer_timeout"]
+[connection signal="timeout" from="hail_face_timer" to="." method="_on_hail_face_timer_timeout"]
