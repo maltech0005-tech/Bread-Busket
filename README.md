@@ -32,14 +32,9 @@ A 2D side-view where the cloud gives bread and hailstone, move the basket to cat
 <img src="settings.png">
 </p>
 
-## Shop
+## Help
 <p align="center">
-<img src="shop.png">
-</p>
-
-## GamePlay
-<p align="center">
-<video controls src="gameplay.mp4">
+<img src="help.png">
 </p>
 
 # Controls
