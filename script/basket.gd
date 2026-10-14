@@ -13,6 +13,12 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	
 	var direction := Input.get_axis("left", "right")
+	if global_position.x<36:
+		if direction<0:
+			direction=0
+	if global_position.x>804:
+		if direction>0:
+			direction=0
 	if direction:
 		velocity.x = direction * SPEED
 	else:
@@ -31,5 +37,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			game.check_gameover()
 	elif area.is_in_group("bread"):
 		GameManager.score+=1
+		GameManager.save_data()
 		game=get_tree().get_first_node_in_group("game")
 		game.update_stats()

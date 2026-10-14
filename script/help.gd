@@ -3,10 +3,12 @@ extends Node2D
 @export var hail: PackedScene
 @onready var spawn_timer: Timer = $spawn_timer
 @onready var hail_timer: Timer = $hail_timer
+@onready var background: AudioStreamPlayer2D = $background
 
 var cloud=null
 
 func _ready() -> void:
+	update_sound()
 	spawn_timer.start(randf_range(0.8, 1.5))
 	hail_timer.start(randf_range(0.8, 1.5))
 
@@ -38,3 +40,6 @@ func _on_spawn_timer_timeout() -> void:
 		
 func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/Menu.tscn")
+	
+func update_sound():
+	background.volume_db=linear_to_db(GameManager.background_music_value/100)

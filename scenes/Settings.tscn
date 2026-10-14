@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c6jp8aqhmjvh1"]
+[gd_scene load_steps=18 format=3 uid="uid://c6jp8aqhmjvh1"]
 
 [ext_resource type="Script" uid="uid://c8w11g66bc10t" path="res://script/settings.gd" id="1_1dggd"]
 [ext_resource type="Texture2D" uid="uid://c7ah4k5x5k3sn" path="res://assets/bg1.jpg" id="2_8e7v8"]
@@ -59,15 +59,19 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="Gradient" id="Gradient_fd4am"]
+[sub_resource type="Gradient" id="Gradient_j1j16"]
 offsets = PackedFloat32Array(0.009009009, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ah7xn"]
-gradient = SubResource("Gradient_fd4am")
+gradient = SubResource("Gradient_j1j16")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fd4am"]
+bg_color = Color(0.99116415, 0.99116427, 0.99116415, 1)
+corner_radius_top_left = 5
 
 [node name="Settings" type="Node2D"]
 script = ExtResource("1_1dggd")
@@ -101,17 +105,19 @@ offset_bottom = 654.0
 color = Color(0.47058824, 0.47058824, 0.47058824, 0.45882353)
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+z_index = 2
 offset_left = 326.0
 offset_top = 162.0
-offset_right = 799.0
-offset_bottom = 525.0
+offset_right = 814.0
+offset_bottom = 537.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_j1j16")
 
 [node name="Larger_border" type="RichTextLabel" parent="."]
+z_index = 2
 offset_left = 336.0
 offset_top = 175.0
-offset_right = 784.0
-offset_bottom = 513.0
+offset_right = 804.0
+offset_bottom = 524.0
 theme_override_font_sizes/normal_font_size = 40
 theme_override_font_sizes/bold_font_size = 40
 theme_override_font_sizes/bold_italics_font_size = 40
@@ -124,14 +130,16 @@ text = "[b][i]Settings[/i][/b]"
 horizontal_alignment = 1
 
 [node name="smaller_border" type="RichTextLabel" parent="."]
+z_index = 2
 offset_left = 347.0
 offset_top = 242.0
-offset_right = 771.0
-offset_bottom = 452.0
+offset_right = 791.0
+offset_bottom = 463.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_3ba70")
 theme_override_styles/focus = SubResource("StyleBoxFlat_oej8g")
 
 [node name="Menu_Container" type="VBoxContainer" parent="."]
+z_index = 2
 offset_left = 361.17352
 offset_top = 260.04877
 offset_right = 766.1735
@@ -164,11 +172,11 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="Menu_Container/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 
-[node name="HSlider" type="HSlider" parent="Menu_Container/HBoxContainer/VBoxContainer2/HBoxContainer"]
-custom_minimum_size = Vector2(110, 0)
+[node name="master_v_slider" type="HSlider" parent="Menu_Container/HBoxContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(110, 50)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Menu_Container/HBoxContainer/VBoxContainer2/HBoxContainer"]
+[node name="master_v_amnt" type="Label" parent="Menu_Container/HBoxContainer/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
 text = "100"
@@ -176,11 +184,11 @@ text = "100"
 [node name="HBoxContainer2" type="HBoxContainer" parent="Menu_Container/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 
-[node name="HSlider" type="HSlider" parent="Menu_Container/HBoxContainer/VBoxContainer2/HBoxContainer2"]
-custom_minimum_size = Vector2(110, 0)
+[node name="music_v_slider" type="HSlider" parent="Menu_Container/HBoxContainer/VBoxContainer2/HBoxContainer2"]
+custom_minimum_size = Vector2(110, 50)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Menu_Container/HBoxContainer/VBoxContainer2/HBoxContainer2"]
+[node name="music_v_amnt" type="Label" parent="Menu_Container/HBoxContainer/VBoxContainer2/HBoxContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
 text = "100"
@@ -188,16 +196,16 @@ text = "100"
 [node name="HBoxContainer3" type="HBoxContainer" parent="Menu_Container/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 
-[node name="HSlider" type="HSlider" parent="Menu_Container/HBoxContainer/VBoxContainer2/HBoxContainer3"]
-custom_minimum_size = Vector2(110, 0)
+[node name="sfxv_slider" type="HSlider" parent="Menu_Container/HBoxContainer/VBoxContainer2/HBoxContainer3"]
+custom_minimum_size = Vector2(110, 50)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Menu_Container/HBoxContainer/VBoxContainer2/HBoxContainer3"]
+[node name="sfxv_amnt" type="Label" parent="Menu_Container/HBoxContainer/VBoxContainer2/HBoxContainer3"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
 text = "100"
 
-[node name="mute" type="CheckButton" parent="Menu_Container"]
+[node name="mute" type="CheckBox" parent="Menu_Container"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
 text = "Mute"
@@ -225,5 +233,24 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 26
 text = "Back"
 
+[node name="toast" type="Label" parent="."]
+visible = false
+z_index = 3
+offset_left = 595.0
+offset_top = 525.0
+offset_right = 724.0
+offset_bottom = 548.0
+theme_override_colors/font_color = Color(0.19607843, 0.4, 0.9254902, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_fd4am")
+text = "Changes Applied"
+
+[node name="toast_timer" type="Timer" parent="."]
+
 [connection signal="timeout" from="spawn_timer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="value_changed" from="Menu_Container/HBoxContainer/VBoxContainer2/HBoxContainer/master_v_slider" to="." method="_on_master_v_slider_value_changed"]
+[connection signal="value_changed" from="Menu_Container/HBoxContainer/VBoxContainer2/HBoxContainer2/music_v_slider" to="." method="_on_music_v_slider_value_changed"]
+[connection signal="value_changed" from="Menu_Container/HBoxContainer/VBoxContainer2/HBoxContainer3/sfxv_slider" to="." method="_on_sfxv_slider_value_changed"]
+[connection signal="toggled" from="Menu_Container/mute" to="." method="_on_mute_toggled"]
+[connection signal="pressed" from="Menu_Container/HBoxContainer2/Apply" to="." method="_on_apply_pressed"]
 [connection signal="pressed" from="Menu_Container/HBoxContainer2/Back" to="." method="_on_back_pressed"]
+[connection signal="timeout" from="toast_timer" to="." method="_on_toast_timer_timeout"]

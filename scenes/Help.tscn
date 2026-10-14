@@ -92,6 +92,7 @@ offset_bottom = 654.0
 color = Color(0.47058824, 0.47058824, 0.47058824, 0.45882353)
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+z_index = 2
 offset_left = 277.0
 offset_top = 102.0
 offset_right = 863.0
@@ -99,6 +100,7 @@ offset_bottom = 525.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_n7bmx")
 
 [node name="Larger_border" type="RichTextLabel" parent="."]
+z_index = 2
 offset_left = 290.0
 offset_top = 112.0
 offset_right = 848.0
@@ -128,6 +130,7 @@ text = "[center][b][i]Help[/i][/b][/center]
 [ul]Coming Soon[ul]"
 
 [node name="Back" type="Button" parent="."]
+z_index = 2
 offset_left = 529.1362
 offset_top = 542.67236
 offset_right = 589.1362

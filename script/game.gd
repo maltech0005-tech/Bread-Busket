@@ -8,6 +8,9 @@ extends Node2D
 @onready var stats_label: Label = $CanvasLayer/stats_label
 @onready var bread_collected: AudioStreamPlayer2D = $bread_collected
 @onready var hail_crash: AudioStreamPlayer2D = $hail_crash
+@onready var gameover_sound: AudioStreamPlayer2D = $gameover_sound
+@onready var background: AudioStreamPlayer2D = $background
+@onready var game_over_label: Label = $CanvasLayer/GameOver/GameOver
 
 var cloud = null
 var basket = null
@@ -15,6 +18,9 @@ var basket = null
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_to_group("game")
+	update_sound()
+	GameManager.score=0
+	update_stats()
 	cloud=get_tree().get_first_node_in_group("cloud")
 	basket=get_tree().get_first_node_in_group("basket")
 	spawn_timer.start(randf_range(0.8, 1.5))
@@ -22,7 +28,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	pass	
+	if Input.is_action_pressed("pause"):
+		_on_pause_pressed()
+	if Input.is_action_pressed("restart"):
+		_on_restart_pressed()
 
 func _on_left_pressed() -> void:
 	Input.action_press("left")
@@ -51,6 +60,7 @@ func check_gameover():
 	basket=get_tree().get_first_node_in_group("basket")
 	var life = basket.life
 	if life==0:
+		gameover_sound.play()
 		get_tree().paused=true
 		game_over.visible=true
 	
@@ -95,9 +105,13 @@ func check_life():
 		life_value.play("0")
 
 func _on_pause_pressed() -> void:
+	game_over.visible=true
+	game_over_label.visible=false
 	get_tree().paused=true
 	
 func update_stats():
+	if GameManager.score>GameManager.HighScore:
+		GameManager.HighScore=GameManager.score
 	stats_label.text = "High Score: "+str(GameManager.HighScore)+"\nScore: "+str(GameManager.score)
 	
 func playbread():
@@ -105,3 +119,9 @@ func playbread():
 	
 func playhail():
 	hail_crash.play()
+
+func update_sound():
+	background.volume_db=linear_to_db(GameManager.background_music_value/100)
+	bread_collected.volume_db=linear_to_db(GameManager.sound_effects_value/100)
+	hail_crash.volume_db=linear_to_db(GameManager.sound_effects_value/100)
+	gameover_sound.volume_db=linear_to_db(GameManager.sound_effects_value/100)

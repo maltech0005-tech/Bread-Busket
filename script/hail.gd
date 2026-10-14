@@ -10,6 +10,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	global_position.y+=Speed*delta
+	if global_position.y>462:
+		queue_free()
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("basket"):

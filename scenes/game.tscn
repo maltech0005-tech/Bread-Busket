@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dagl2jsi6iqyj"]
+[gd_scene load_steps=35 format=3 uid="uid://dagl2jsi6iqyj"]
 
 [ext_resource type="Texture2D" uid="uid://c7ah4k5x5k3sn" path="res://assets/bg1.jpg" id="1_iywne"]
 [ext_resource type="Script" uid="uid://cy0riad6dssft" path="res://script/game.gd" id="1_p57ef"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://c5rsu844x3xaa" path="res://assets/background.mp3" id="12_dinhu"]
 [ext_resource type="AudioStream" uid="uid://dvaf0gthpokxo" path="res://assets/bread_collected.mp3" id="12_trtic"]
 [ext_resource type="AudioStream" uid="uid://cf58okdro8us8" path="res://assets/hail_stone.mp3" id="13_ir15t"]
+[ext_resource type="AudioStream" uid="uid://b7nu4d1fmy0x4" path="res://assets/gameover.mp3" id="15_ir15t"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jyhfs"]
 
@@ -339,6 +340,10 @@ stream = ExtResource("13_ir15t")
 stream = ExtResource("12_dinhu")
 autoplay = true
 parameters/looping = false
+
+[node name="gameover_sound" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("15_ir15t")
 
 [connection signal="timeout" from="spawn_timer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="hail_timer" to="." method="_on_hail_timer_timeout"]
